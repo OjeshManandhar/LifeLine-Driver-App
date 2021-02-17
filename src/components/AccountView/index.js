@@ -45,8 +45,6 @@ function AccountView(props) {
   const [loading, setLoading] = useState(true);
   const [accImage, setAccImage] = useState(null);
 
-  console.log('accountInfo:', props);
-
   // Account Info
   useEffect(() => {
     async function getInfo() {
