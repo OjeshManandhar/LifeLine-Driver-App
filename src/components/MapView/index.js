@@ -209,11 +209,11 @@ function MapView(props) {
     }
   }, [mapViewStatus, pickedLocation, setMapViewStatus, updateDestinationInfo]);
 
-  props.setBackHandler(() => handleBackButton);
-  // useEffect(() => props.setBackHandler(() => handleBackButton), [
-  //   handleBackButton,
-  //   props.setBackHandler
-  // ]);
+  // props.setBackHandler(() => handleBackButton);
+  useEffect(() => props.setBackHandler(() => handleBackButton), [
+    handleBackButton,
+    props.setBackHandler
+  ]);
 
   return (
     <View style={styles.container}>
