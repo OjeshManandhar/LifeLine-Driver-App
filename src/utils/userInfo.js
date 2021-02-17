@@ -1,5 +1,5 @@
 // Packages
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // env
 import { USER_INFO_KEY } from '@env';
