@@ -31,6 +31,8 @@ class UserLocation {
   updateLocation(coords) {
     this.#userLocation = coords;
 
+    console.log('new coords:', this.#userLocation);
+
     if (this.#sendLocation) {
       emitLocation(this.#userLocation, SocketText.operations.update);
     }
