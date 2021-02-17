@@ -5,8 +5,6 @@ import io from 'socket.io-client';
 import { SOCKET_ENDPOINT } from '@env';
 
 const socket = io(SOCKET_ENDPOINT, {
-  path: '/',
-  transport: ['polling', 'websocket'],
   autoConnect: true,
   reconnection: true,
   reconnectionDelay: 500,
