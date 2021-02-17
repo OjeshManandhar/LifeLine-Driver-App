@@ -1,5 +1,5 @@
 // utils
-import socket from 'utils/socket';
+import Socket from 'utils/socket';
 import UserInfo from 'utils/userInfo';
 
 // global
@@ -8,7 +8,7 @@ import { SocketText } from 'global/strings';
 function emitLocation(location, operation) {
   const info = UserInfo.getInfo();
 
-  socket.emit(SocketText.events.driverLocation, {
+  Socket.emit(SocketText.events.driverLocation, {
     operation,
     driver_gps: {
       type: 'Feature',

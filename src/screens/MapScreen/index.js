@@ -9,7 +9,7 @@ import MapView from 'components/MapView';
 import AccountView from 'components/AccountView';
 
 // utils
-import socket from 'utils/socket';
+import Socket from 'utils/socket';
 import UserInfo from 'utils/userInfo';
 import UserLocation from 'utils/userLocation';
 
@@ -74,7 +74,7 @@ function MapScreen({ navigation }) {
               UserLocation.clearWatch();
               console.log('Logout ko selectedRoute:', selectedRoute);
               if (selectedRoute) {
-                socket.emit(SocketText.events.driverRoutes, {
+                Socket.emit(SocketText.events.driverRoutes, {
                   driver_route: selectedRoute,
                   operation: SocketText.operations.delete
                 });
