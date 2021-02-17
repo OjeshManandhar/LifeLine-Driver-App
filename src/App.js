@@ -9,7 +9,7 @@ import 'react-native-gesture-handler';
  * @flow strict-local
  */
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'react-native';
 
 // packages
