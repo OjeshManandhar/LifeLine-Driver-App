@@ -13,19 +13,74 @@ import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 
 // packages
-import SplashScreen from 'react-native-splash-screen';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 // navigator
 import Navigator from 'navigator';
 
+// api
+// import tokenCheck from 'api/tokenCheck';
+
+// utils
+import UserInfo from 'utils/userInfo';
+
+// global
+import Fonts from 'global/fonts';
+import Colors from 'global/colors';
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: Colors.primary,
+    accent: Colors.accent
+  },
+  fonts: {
+    ...DefaultTheme.fonts,
+    regular: { fontFamily: Fonts.regular }
+  }
+};
+
 function App() {
-  useEffect(() => SplashScreen.hide(), []);
+  const [isReady, setIsReady] = useState(false);
+
+  // Check UserInfo
+  useEffect(() => {
+    (async function () {
+      await UserInfo.init();
+
+      // const userToken = UserInfo.getToken();
+
+      // try {
+      //   if (userToken) {
+      //     tokenCheck(userToken)
+      //       .then(async response => {
+      //         console.log('Token check response:', response);
+
+      //         const newToken = response.data;
+
+      //         await UserInfo.setNewToken(newToken);
+      //       })
+      //       .catch(async err => {
+      //         console.log('Token check error:', error);
+
+      //         await UserInfo.delete();
+      //       });
+      //   }
+      // } catch {
+      //   console.log('Token check catch');
+      // }
+
+      setIsReady(true);
+    })();
+  }, [setIsReady]);
 
   return (
-    <>
+    <PaperProvider theme={theme}>
       <StatusBar backgroundColor='#000000' barStyle='light-content' />
-      <Navigator />
-    </>
+
+      {isReady && <Navigator />}
+    </PaperProvider>
   );
 }
 
