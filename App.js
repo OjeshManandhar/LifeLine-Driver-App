@@ -1,3 +1,6 @@
+import 'react-native-gesture-handler';
+// Note: If you skip this step, your app may crash in production even if it works fine in development.
+
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
