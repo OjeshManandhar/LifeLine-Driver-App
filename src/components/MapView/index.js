@@ -85,7 +85,10 @@ function MapView(props) {
   useEffect(() => {
     async function getImage() {
       Axios.get(`${API_URL}${SMALL_IMAGE_ENDPOINT}/${UserInfo.getContact()}`)
-        .then(res => setAvatar(res.data))
+        .then(res => {
+          console.log('small image:', res.data);
+          // setAvatar(res.data);
+        })
         .catch(err => console.log('Fetch image error:', err));
     }
 

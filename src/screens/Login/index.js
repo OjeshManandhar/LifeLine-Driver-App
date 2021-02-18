@@ -63,6 +63,9 @@ function Login({ navigation }) {
     login(phoneNumber, password)
       .then(async function (response) {
         const info = response.data;
+
+        console.log('Login response.data:', response);
+
         await UserInfo.set(info);
 
         clearFields();
@@ -72,6 +75,8 @@ function Login({ navigation }) {
         navigation.navigate(Routes.map);
       })
       .catch(function (error) {
+        console.log('Login err:', error);
+
         if (error.response) {
           setErrorText(error.response.data);
         } else {
