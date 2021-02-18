@@ -25,8 +25,12 @@ function emitLocation(location, operation) {
 }
 
 class UserLocation {
-  #sendLocation = true;
+  #sendLocation = false;
   #userLocation = null;
+
+  init() {
+    this.#sendLocation = true;
+  }
 
   updateLocation(coords) {
     this.#userLocation = coords;
