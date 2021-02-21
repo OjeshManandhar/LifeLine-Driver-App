@@ -1,18 +1,35 @@
 // packages
 import io from 'socket.io-client';
 
+// utils
+import UserInfo from 'utils/userInfo';
+
 // env
 import { SOCKET_ENDPOINT } from '@env';
+class Socket {
+  #alreadyInit = false;
+  #socket = null;
 
-const socket = io(SOCKET_ENDPOINT, {
-  autoConnect: true,
-  reconnection: true,
-  reconnectionDelay: 500,
-  reconnectionAttempts: Infinity
-});
+  init() {
+    if (this.#alreadyInit) return;
 
-socket.on('connect', data => console.log(socket.id, 'connected:', data));
-socket.on('error', err => console.log('error:', err));
-socket.on('connect_error', err => console.log('connect_error:', err));
+    this.#socket = io(SOCKET_ENDPOINT, {
+      autoConnect: true,
+      reconnection: true,
+      reconnectionDelay: 500,
+      reconnectionAttempts: Infinity
+    });
 
-export default socket;
+    this.#socket.on('connect', data =>
+      console.log(socket.id, 'connected:', data)
+    );
+    this.#socket.on('error', err => console.log('error:', err));
+    this.#socket.on('connect_error', err => console.log('connect_error:', err));
+  }
+
+  get socket() {
+    return this.#socket;
+  }
+}
+
+export default new Socket();

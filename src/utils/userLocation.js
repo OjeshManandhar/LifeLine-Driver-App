@@ -8,7 +8,7 @@ import { SocketText } from 'global/strings';
 function emitLocation(location, operation) {
   const info = UserInfo.getInfo();
 
-  Socket.emit(SocketText.events.driverLocation, {
+  Socket.socket.emit(SocketText.events.driverLocation, {
     operation,
     driver_gps: {
       type: 'Feature',

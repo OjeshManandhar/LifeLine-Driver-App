@@ -19,6 +19,7 @@ import login from 'api/login';
 
 // utils
 import UserInfo from 'utils/userInfo';
+import Socket from 'utils/socket';
 
 // assets
 import logo from 'assets/images/logo.png';
@@ -32,6 +33,10 @@ import { LoginText } from 'global/strings';
 
 // styles
 import styles from './styles';
+
+function initSocket() {
+  Socket.init();
+}
 
 function Login({ navigation }) {
   const LOGO_SIZE = 120;
@@ -71,6 +76,8 @@ function Login({ navigation }) {
         clearFields();
         setErrorText(null);
         setIsLoggingIn(false);
+
+        initSocket();
 
         navigation.navigate(Routes.map);
       })
@@ -165,6 +172,7 @@ function Login({ navigation }) {
 
   useEffect(() => {
     if (UserInfo.getToken()) {
+      initSocket();
       navigation.navigate(Routes.map);
     } else {
       SplashScreen.hide();

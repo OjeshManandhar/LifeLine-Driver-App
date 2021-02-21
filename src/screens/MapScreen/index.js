@@ -72,9 +72,8 @@ function MapScreen({ navigation }) {
             // This will continue the action that had triggered the removal of the screen
             onPress: async () => {
               UserLocation.clearWatch();
-              console.log('Logout ko selectedRoute:', selectedRoute);
               if (selectedRoute) {
-                Socket.emit(SocketText.events.driverRoutes, {
+                Socket.socket.emit(SocketText.events.driverRoutes, {
                   driver_route: selectedRoute,
                   operation: SocketText.operations.delete
                 });

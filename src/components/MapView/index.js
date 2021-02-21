@@ -72,13 +72,17 @@ function MapView(props) {
 
   // Socket
   useEffect(() => {
-    Socket.on(SocketText.events.message, data => {
+    Socket.socket.on(SocketText.events.message, data => {
       setTrafficList(data['traffic_gps']);
       setObstructionList(data['obstructions']);
     });
 
-    Socket.on(SocketText.events.trafficLocation, data => setTrafficList(data));
-    Socket.on(SocketText.events.obstructions, data => setObstructionList(data));
+    Socket.socket.on(SocketText.events.trafficLocation, data =>
+      setTrafficList(data)
+    );
+    Socket.socket.on(SocketText.events.obstructions, data =>
+      setObstructionList(data)
+    );
   }, [setTrafficList, setObstructionList]);
 
   // avatar
@@ -99,12 +103,12 @@ function MapView(props) {
     appState => {
       if (routeToDestination) {
         if (appState === 'active') {
-          Socket.emit(SocketText.events.driverRoutes, {
+          Socket.socket.emit(SocketText.events.driverRoutes, {
             driver_route: routeToDestination,
             operation: SocketText.operations.update
           });
         } else {
-          Socket.emit(SocketText.events.driverRoutes, {
+          Socket.socket.emit(SocketText.events.driverRoutes, {
             driver_route: routeToDestination,
             operation: SocketText.operations.delete
           });
@@ -159,7 +163,7 @@ function MapView(props) {
       route.properties.description = description;
 
       /* PATCH route to server */
-      Socket.emit(SocketText.events.driverRoutes, {
+      Socket.socket.emit(SocketText.events.driverRoutes, {
         driver_route: route,
         operation: SocketText.operations.update
       });
@@ -442,7 +446,7 @@ function MapView(props) {
             setRouteToDestination(routeToDestination);
 
             /* POST route to server */
-            Socket.emit(SocketText.events.driverRoutes, {
+            Socket.socket.emit(SocketText.events.driverRoutes, {
               driver_route: routeToDestination,
               operation: SocketText.operations.update
             });
@@ -451,7 +455,7 @@ function MapView(props) {
             setMapViewStatus(EMapViewStatus.destinationInfo);
           } else if (mapViewStatus === EMapViewStatus.destinationInfo) {
             /* DELETE route to server */
-            Socket.emit(SocketText.events.driverRoutes, {
+            Socket.socket.emit(SocketText.events.driverRoutes, {
               driver_route: routeToDestination,
               operation: SocketText.operations.delete
             });
