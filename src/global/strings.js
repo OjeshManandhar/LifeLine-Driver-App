@@ -24,6 +24,7 @@ export const LoginText = {
     detail: 'Please contact the admin to register you to the App. \nThank You!'
   },
   errorText: {
+    serverErr: 'There was a problem with the server',
     noNetwork: 'Please check your internet connection'
   }
 };

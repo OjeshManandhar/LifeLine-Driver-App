@@ -21,7 +21,7 @@ class Socket {
     });
 
     this.#socket.on('connect', data =>
-      console.log(socket.id, 'connected:', data)
+      console.log(this.#socket.id, 'connected:', data)
     );
     this.#socket.on('error', err => console.log('error:', err));
     this.#socket.on('connect_error', err => console.log('connect_error:', err));

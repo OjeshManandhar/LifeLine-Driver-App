@@ -20,7 +20,7 @@ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Navigator from 'navigator';
 
 // api
-// import tokenCheck from 'api/tokenCheck';
+import tokenCheck from 'api/tokenCheck';
 
 // utils
 import UserInfo from 'utils/userInfo';
@@ -70,12 +70,14 @@ function App() {
               setIsReady(true);
             })
             .catch(async err => {
-              console.log('Token check req error:', error);
+              console.error('Token check req error:', err.response);
 
               await UserInfo.delete();
 
               setIsReady(true);
             });
+        } else {
+          setIsReady(true);
         }
       } catch (err) {
         console.log('Token check catch:', err);
