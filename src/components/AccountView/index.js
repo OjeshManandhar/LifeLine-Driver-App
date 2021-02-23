@@ -137,8 +137,13 @@ function AccountView(props) {
         <View style={styles.container}>
           <Avatar.Image
             style={styles.avatar}
-            source={{ uri: accImage }}
-            defaultSource={noImage}
+            source={
+              accImage
+                ? {
+                    uri: accImage
+                  }
+                : noImage
+            }
             size={130}
           />
 

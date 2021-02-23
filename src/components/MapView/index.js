@@ -270,8 +270,13 @@ function MapView(props) {
 
         <AnimatedImageButton
           in={mapViewStatus !== EMapViewStatus.searching}
-          image={{ uri: avatar }}
-          defaultSource={noImage}
+          image={
+            avatar
+              ? {
+                  uri: avatar
+                }
+              : noImage
+          }
           timeout={0.25 * 1000}
           imageStyles={styles.avatar}
           animationStyles={{
