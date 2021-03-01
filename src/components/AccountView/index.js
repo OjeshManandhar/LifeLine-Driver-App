@@ -81,19 +81,11 @@ function AccountView(props) {
 
         setAccInfo(info);
 
-        Axios.get(
+        setAccImage(
           `${API_URL}${DRIVER_IMAGE_ENDPOINT}/${
             info.contact
           }?time=${new Date()}`
-        )
-          .then(res => console.log('Fetch iamge res:', res))
-          .catch(err => console.error('Fetch iamge err:', err));
-
-        // setAccImage(
-        //   `${API_URL}${DRIVER_IMAGE_ENDPOINT}/${
-        //     info.contact
-        //   }`
-        // );
+        );
 
         setError(false);
         setLoading(false);

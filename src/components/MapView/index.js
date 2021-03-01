@@ -90,13 +90,14 @@ function MapView(props) {
     async function getImage() {
       Axios.get(`${API_URL}${SMALL_IMAGE_ENDPOINT}/${UserInfo.getContact()}`)
         .then(res => {
-          console.log('small image:', res.data);
-          // setAvatar(res.data);
+          console.log('small image:', res);
+          // setAvatar(res);
         })
         .catch(err => console.log('Fetch image error:', err));
     }
+    // getImage();
 
-    getImage();
+    setAvatar(`${API_URL}${SMALL_IMAGE_ENDPOINT}/${UserInfo.getContact()}`);
   }, [setAvatar]);
 
   const handleAppStateChange = useCallback(

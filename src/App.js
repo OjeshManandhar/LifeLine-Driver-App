@@ -70,7 +70,7 @@ function App() {
               setIsReady(true);
             })
             .catch(async err => {
-              console.error('Token check req error:', err.response);
+              console.error('Token check req error:', err);
 
               await UserInfo.delete();
 
