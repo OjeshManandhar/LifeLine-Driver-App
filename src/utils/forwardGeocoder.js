@@ -117,7 +117,6 @@ function forwardGeocoder(keyword) {
           //   console.log('Request Aborted');
           //   return;
           // }
-          // console.error(error.message);
 
           // const match = error.body;
           reject(error);
