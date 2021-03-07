@@ -6,6 +6,8 @@ import UserInfo from 'utils/userInfo';
 import { SocketText } from 'global/strings';
 
 function emitLocation(location, operation) {
+  if (!location) return;
+
   const info = UserInfo.getInfo();
 
   Socket.socket.emit(SocketText.events.driverLocation, {
@@ -33,11 +35,13 @@ class UserLocation {
   }
 
   updateLocation(coords) {
+    if (!coords) return;
+
     this.#userLocation = coords;
 
     console.log('new coords:', this.#userLocation);
 
-    if (this.#sendLocation) {
+    if (this.#userLocation && this.#sendLocation) {
       emitLocation(this.#userLocation, SocketText.operations.update);
     }
   }
